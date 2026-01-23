@@ -1,7 +1,7 @@
 from django.db import models
 from hotels.models import Hotel
 from django.db.models import Q
-from bookings.models import Booking
+
 
 class Room(models.Model):
     ROOM_TYPE_CHOICES = (
@@ -26,6 +26,7 @@ class Room(models.Model):
         """
         Returns number of rooms available for given dates
         """
+        from bookings.models import Booking
         booked_count = Booking.objects.filter(
             room=self,
             status='confirmed',
@@ -33,6 +34,4 @@ class Room(models.Model):
             check_out__gt=check_in
         ).count()
         return self.total_rooms - booked_count
-from django.db import models
 
-# Create your models here.
