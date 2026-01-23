@@ -29,7 +29,7 @@ class Room(models.Model):
         from bookings.models import Booking
         booked_count = Booking.objects.filter(
             room=self,
-            status='confirmed',
+            status__in=['pending', 'confirmed'],
             check_in__lt=check_out,
             check_out__gt=check_in
         ).count()
