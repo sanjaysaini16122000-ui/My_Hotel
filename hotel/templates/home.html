@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Available Rooms</h1>
+
+{% for room in rooms %}
+    <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
+        <h3>{{ room.name }}</h3>
+        <p>Price: ₹{{ room.price_per_night }} / night</p>
+        <a href="/bookings/book/" class="btn">Book Now</a>
+    </div>
+{% empty %}
+    <p>No rooms available.</p>
+{% endfor %}
+
+{% endblock %}

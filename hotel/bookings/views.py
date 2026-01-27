@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from .forms import BookingForm
 from rooms.models import Room
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def create_booking(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
