@@ -29,6 +29,11 @@ def create_booking(request):
                 for error in errors:
                     messages.error(request, error)
     else:
-        form = BookingForm()
+        room_id = request.GET.get('room_id')
+        if room_id:
+            form = BookingForm(initial={'room': room_id})
+        else:
+            form = BookingForm()
+
     return render(request, 'bookings/create_booking.html', {'form': form})
 

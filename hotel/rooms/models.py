@@ -1,8 +1,5 @@
 from django.db import models
 from hotels.models import Hotel
-from django.db.models import Q
-
-
 class Room(models.Model):
     ROOM_TYPE_CHOICES = (
         ('single', 'Single'),
@@ -18,6 +15,7 @@ class Room(models.Model):
     amenities = models.TextField()
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='rooms/', null=True, blank=True)
 
     def __str__(self):
         return f"{self.room_type}"
