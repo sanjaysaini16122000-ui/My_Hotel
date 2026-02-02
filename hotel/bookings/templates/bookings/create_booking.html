@@ -10,5 +10,12 @@
         {{ form.as_p }}
         <button type="submit">Book Now</button>
     </form>
+
+    {% if booking %}
+        <hr>
+        <p>Booking created! Proceed to payment:</p>
+        <a href="{% url 'payment_page' booking.id %}" class="btn">Pay Now</a>
+    {% endif %}
 </body>
 </html>
+

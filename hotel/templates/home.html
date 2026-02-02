@@ -22,13 +22,29 @@
     <div style="flex:1;">
         <h2 style="margin:0 0 8px 0;">
             <a href="/rooms/{{ room.id }}/" style="text-decoration:none; color:#2c3e50;">
-                {{ room.name }}
+                {{ room.get_room_type_display }} Room
+
             </a>
         </h2>
 
         <p style="margin:5px 0; color:#666;">
             ₹{{ room.price_per_night }} / night
+            <p style="margin:5px 0;">
+    Rating:
+    {% if room.average_rating > 0 %}
+        <span style="color:orange;">
+            {{ room.average_rating|floatformat:1 }} ⭐ / 5
+        </span>
+    {% else %}
+        No reviews yet
+    {% endif %}
+</p>
+
         </p>
+        <p style="color:green; font-weight:bold;">
+         {{ room.total_rooms }} Rooms Available
+        </p>
+
 
         <a href="/bookings/book/?room_id={{ room.id }}" class="btn">Book Now</a>
 
