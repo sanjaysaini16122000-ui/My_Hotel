@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width:1100px; margin:40px auto;">
+
+    <!-- Room Header -->
+    <h1 class="page-title">{{ room.get_room_type_display }} Room</h1>
+
+    <p style="text-align:center; color:orange; font-weight:bold; margin-top:-10px;">
+        ⭐ {{ room.average_rating|floatformat:1 }} / 5
+    </p>
+
+    <!-- Top Section -->
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:30px; margin-top:25px; align-items:start;">
+
+        {% if room.image %}
+            <img src="{{ room.image.url }}"
+                 style="width:100%; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+        {% endif %}
+
+        <div class="info-box">
+            <h3>Room Details</h3>
+            <p><strong>Price:</strong> ₹{{ room.price_per_night }} / night</p>
+            <p><strong>Total Rooms:</strong> {{ room.total_rooms }}</p>
+            <p><strong>Description:</strong><br>{{ room.description }}</p>
+
+            <div style="margin-top:15px;">
+                <a href="/bookings/book/?room_id={{ room.id }}" class="btn-success">
+                    Book This Room
+                </a>
+                <a href="/reviews/add/{{ room.id }}/" class="btn-primary" style="margin-left:10px;">
+                    Add Review
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Reviews Section -->
+    <div style="margin-top:40px;">
+        <h2>Guest Reviews ⭐</h2>

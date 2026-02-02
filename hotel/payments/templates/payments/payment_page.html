@@ -1,19 +1,23 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h2>Complete Your Payment 💳</h2>
+<div class="container-card">
 
-<p><strong>Booking ID:</strong> {{ booking.id }}</p>
-<p><strong>Room:</strong> {{ booking.room.get_room_type_display }} Room</p>
-<p><strong>Price per Night:</strong> ₹{{ booking.room.price_per_night }}</p>
+    <h2 class="page-title">💳 Secure Payment</h2>
 
-<hr>
+    <div class="info-box">
+        <p><strong>Booking ID:</strong> #{{ booking.id }}</p>
+        <p><strong>Room Type:</strong> {{ booking.room.get_room_type_display }}</p>
+        <p><strong>Price per Night:</strong> ₹{{ booking.room.price_per_night }}</p>
+    </div>
 
-<h3>Total Amount: ₹{{ payment.amount }}</h3>
+    <div class="center">
+        <h3 style="color:#28a745;">Total Amount: ₹{{ payment.amount }}</h3>
+    </div>
 
-<form method="post" action="/payments/success/{{ booking.id }}/">
-    {% csrf_token %}
-    <button type="submit" style="padding:10px 20px;">Pay Now</button>
-</form>
+    <form method="post" action="{% url 'payment_success' booking.id %}" class="center">
+        {% csrf_token %}
+        <button type="submit" class="btn-success">Pay Now</button>
+    </form>
 
+</div>
 {% endblock %}

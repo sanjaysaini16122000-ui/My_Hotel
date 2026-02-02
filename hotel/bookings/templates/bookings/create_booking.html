@@ -1,21 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Book a Room</title>
-</head>
-<body>
-    <h1>Book a Room</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Book Now</button>
-    </form>
+{% extends "base.html" %}
+{% block content %}
+<div class="container-card">
+
+    <h2 class="page-title">🛎️ Book Your Stay</h2>
 
     {% if booking %}
-        <hr>
-        <p>Booking created! Proceed to payment:</p>
-        <a href="{% url 'payment_page' booking.id %}" class="btn">Pay Now</a>
-    {% endif %}
-</body>
-</html>
+        <div class="success-box">
+            <strong>Booking Created Successfully!</strong><br>
+            Room: {{ booking.room.get_room_type_display }}<br>
+            Price per Night: ₹{{ booking.room.price_per_night }}
+        </div>
 
+        <div class="center">
+            <a href="{% url 'payment_page' booking.id %}" class="btn-success">
+                Proceed to Payment 💳
+            </a>
+        </div>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="center">
+                <button type="submit" class="btn-primary">Book Now</button>
+            </div>
+        </form>
+    {% endif %}
+
+</div>
+{% endblock %}
