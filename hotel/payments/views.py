@@ -8,7 +8,7 @@ def payment_page(request, booking_id):
     # Payment object create karo agar exist nahi karta
     payment, created = Payment.objects.get_or_create(
         booking=booking,
-        defaults={'amount': booking.room.price_per_night}
+        defaults={'amount': booking.total_price}
     )
 
     return render(request, 'payments/payment_page.html', {

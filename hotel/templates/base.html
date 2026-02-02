@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Hotel</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body { font-family: Arial; margin: 0; padding: 0; }
+        nav {
+            background: #2c3e50;
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+        }
+        nav a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        .container { padding: 20px; }
+        .btn {
+            background: #3498db;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div>
+        <a href="/">My Hotel</a>
+        <a href="/bookings/book/">Book Room</a>
+    </div>
+
+    <div>
+        {% if user.is_authenticated %}
+            Welcome, {{ user.username }} |
+            <a href="/accounts/logout/">Logout</a>
+        {% else %}
+            <a href="/accounts/login/">Login</a>
+            <a href="/accounts/signup/">Sign Up</a>
+        {% endif %}
+    </div>
+</nav>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
