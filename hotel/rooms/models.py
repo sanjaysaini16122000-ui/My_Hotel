@@ -33,3 +33,7 @@ class Room(models.Model):
         ).count()
         return self.total_rooms - booked_count
 
+from django.db.models import Avg
+
+def average_rating(self):
+    return self.reviews.aggregate(avg=Avg('rating'))['avg'] or 0

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Payment Successful 🎉</h2>
+
+<p>Your payment has been completed.</p>
+
+<p><strong>Booking ID:</strong> {{ payment.booking.id }}</p>
+<p><strong>Room:</strong> {{ payment.booking.room.get_room_type_display }} Room</p>
+<p><strong>Amount Paid:</strong> ₹{{ payment.amount }}</p>
+<p><strong>Status:</strong> {{ payment.status }}</p>
+
+<a href="/" class="btn">Back to Home</a>
+{% endblock %}

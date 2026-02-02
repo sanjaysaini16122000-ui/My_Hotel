@@ -27,8 +27,8 @@ urlpatterns = [
     path('rooms/', include('rooms.urls')),
     path('bookings/', include('bookings.urls')),
     path('accounts/', include('accounts.urls')),
-
-
+    path('reviews/', include('reviews.urls')),
+    path('payments/', include('payments.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
