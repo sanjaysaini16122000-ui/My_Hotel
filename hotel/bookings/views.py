@@ -16,7 +16,7 @@ def create_booking(request):
             available = booking.room.available_rooms(booking.check_in, booking.check_out)
             if available < 1:
                 messages.error(request, "Sorry! No rooms available for selected dates.")
-                return render(request, 'bookings/create_booking.html', {'form': form, 'booking': booking})
+                return render(request, 'bookings/create_booking.html', {'form': form})
 
             # total price calculation
             nights = (booking.check_out - booking.check_in).days

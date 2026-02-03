@@ -1,10 +1,87 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Sign Up</title>
-</head>
-<body>
-    <h1>Create Account</h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+.signup-container {
+    max-width: 400px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.signup-container h1 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.signup-container form {
+    text-align: left;
+}
+
+.signup-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.signup-container input[type="text"],
+.signup-container input[type="email"],
+.signup-container input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.signup-container button {
+    width: 100%;
+    padding: 12px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-container button:hover {
+    background: #229954;
+}
+
+.signup-container .links {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.signup-container .links a {
+    color: #27ae60;
+    text-decoration: none;
+}
+
+.signup-container .links a:hover {
+    text-decoration: underline;
+}
+
+.errorlist {
+    color: #e74c3c;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+</style>
+
+<div class="signup-container">
+    <h1>📝 Create Your Account</h1>
 
     <form method="post">
         {% csrf_token %}
@@ -12,6 +89,8 @@
         <button type="submit">Sign Up</button>
     </form>
 
-    <p>Already have an account? <a href="/accounts/login/">Login</a></p>
-</body>
-</html>
+    <div class="links">
+        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </div>
+</div>
+{% endblock %}

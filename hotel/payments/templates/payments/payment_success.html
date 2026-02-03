@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h2>Payment Successful 🎉</h2>
+<link rel="stylesheet" href="{% static 'css/payment.css' %}">
 
-<p>Your payment has been completed.</p>
+<div class="success-container">
+    <div class="success-icon">✅</div>
+    <h2>Payment Successful 🎉</h2>
 
-<p><strong>Booking ID:</strong> {{ payment.booking.id }}</p>
-<p><strong>Room:</strong> {{ payment.booking.room.get_room_type_display }} Room</p>
-<p><strong>Amount Paid:</strong> ₹{{ payment.amount }}</p>
-<p><strong>Status:</strong> {{ payment.status }}</p>
+    <p>Your payment has been completed.</p>
 
-<a href="/" class="btn">Back to Home</a>
+    <p><strong>Booking ID:</strong> {{ payment.booking.id }}</p>
+    <p><strong>Room:</strong> {{ payment.booking.room.get_room_type_display }} Room</p>
+    <p><strong>Amount Paid:</strong> ₹{{ payment.amount }}</p>
+    <p><strong>Status:</strong> {{ payment.status }}</p>
+
+    <a href="/" class="btn-home">Back to Home</a>
+</div>
 {% endblock %}

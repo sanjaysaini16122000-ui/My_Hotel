@@ -25,7 +25,7 @@
 
             <div style="padding:15px;">
                 <h2 style="margin:0 0 8px 0;">
-                    <a href="/rooms/{{ room.id }}/" style="text-decoration:none; color:#2c3e50;">
+                    <a href="/rooms/{{ room.id }}/" class="room-link">
                         {{ room.get_room_type_display }} Room
                     </a>
                 </h2>
@@ -63,4 +63,12 @@
 
     </div>
 </div>
+<div class="pool-section">
+    <img src="{% static 'images/pool.jpg' %}" alt="Swimming Pool" class="pool-image">
+    <div class="pool-overlay">
+        <h2>Relax by Our Luxury Pool</h2>
+        <p>Enjoy world-class comfort and peaceful vibes during your stay.</p>
+    </div>
+</div>
+
 {% endblock %}

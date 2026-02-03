@@ -2,10 +2,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import ReviewForm
 from rooms.models import Room
+from .models import Review
+
 
 @login_required
 def add_review(request, room_id):
     room = get_object_or_404(Room, id=room_id)
+
+    if Review.objects.filter(room=room, user=request.user).exists():
+        return redirect('room_detail', room_id=room.id)
 
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -18,4 +23,4 @@ def add_review(request, room_id):
     else:
         form = ReviewForm()
 
-    return render(request, 'reviews/add_review.html', {'form': form})
+    return render(request, 'reviews/add_review.html', {'form': form, 'room': room})
