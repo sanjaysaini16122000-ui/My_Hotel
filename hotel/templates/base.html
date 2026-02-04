@@ -56,6 +56,118 @@
         background: #2980b9;
         transform: translateY(-2px);
     }
+      /* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Button */
+.dropbtn {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+/* Hidden menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 180px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Links inside dropdown */
+.dropdown-content a {
+    color: #2c3e50;
+    padding: 10px 14px;
+    display: block;
+    text-decoration: none;
+}
+
+/* Hover effect */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+      /* ===== MODAL BACKGROUND ===== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+/* ===== MODAL BOX ===== */
+.modal-box {
+    background: white;
+    width: 350px;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-box h2 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.modal-box p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* ===== BUTTONS ===== */
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancel-btn {
+    background: #bdc3c7;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.confirm-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.confirm-btn:hover {
+    background: #c0392b;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
+
 </style>
 
 </head>
@@ -63,17 +175,39 @@
 
 <nav>
     <div>
-        <a href="/">My Hotel</a>
-        <a href="/bookings/book/">Book Room</a>
+    <a href="/">My Hotel</a>
+
+    <!-- ROOMS DROPDOWN -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">Rooms ▾</a>
+        <div class="dropdown-content">
+            {% for room in nav_rooms %}
+                <a href="/rooms/{{ room.id }}/">
+                    {{ room.get_room_type_display }} Room
+                </a>
+            {% endfor %}
+        </div>
     </div>
+
+    <a href="/bookings/book/">Book Room</a>
+
+        {% if user.is_staff %}
+            <a href="{% url 'admin_dashboard' %}">Dashboard</a>
+        {% endif %}
+
+</div>
+
 
     <div>
         {% if user.is_authenticated %}
             Welcome, {{ user.username }} |
-            <form method="post" action="/accounts/logout/" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" style="background: none; border: none; color: white; text-decoration: underline; cursor: pointer;">Logout</button>
-            </form>
+        <form method="post" action="/accounts/logout/" style="display: inline;">
+    {% csrf_token %}
+    <button type="button" onclick="openLogoutModal()" class="logout-btn">
+        Logout
+    </button>
+</form>
+
         {% else %}
             <a href="/accounts/login/">Login</a>
             <a href="/accounts/signup/">Sign Up</a>
@@ -85,5 +219,39 @@
     {% block content %}{% endblock %}
 </div>
 
+<!-- ===== LOGOUT MODAL ===== -->
+<div id="logoutModal" class="modal">
+    <div class="modal-box">
+        <h2>Logout?</h2>
+        <p>Are you sure you want to end your session?</p>
+
+        <div class="modal-actions">
+            <button class="cancel-btn" onclick="closeLogoutModal()">Cancel</button>
+
+            <form method="post" action="/accounts/logout/">
+                {% csrf_token %}
+                <button type="submit" class="confirm-btn">Yes, Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+function openLogoutModal() {
+    document.getElementById("logoutModal").style.display = "flex";
+}
+
+function closeLogoutModal() {
+    document.getElementById("logoutModal").style.display = "none";
+}
+
+// close if clicked outside
+window.onclick = function(e) {
+    const modal = document.getElementById("logoutModal");
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 </body>
 </html>
