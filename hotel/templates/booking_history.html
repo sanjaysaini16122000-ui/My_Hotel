@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="profile-container">
+    <h2 style="text-align:center; color:#2c3e50; margin-bottom:24px;">🔹 Booking History</h2>
+    {% if bookings %}
+        <table class="booking-history-table" style="width:100%; background:#fafbfc; border-radius:8px; box-shadow:0 2px 8px rgba(44,62,80,0.04);">
+            <thead>
+                <tr style="background:#f4f6f8;">
+                    <th style="padding:10px;">🏨 Room</th>
+                    <th style="padding:10px;">📅 Check-in</th>
+                    <th style="padding:10px;">📅 Check-out</th>
+                    <th style="padding:10px;">💰 Price</th>
+                    <th style="padding:10px;">📌 Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr style="border-bottom:1px solid #eee;">
+                        <td style="padding:10px;">{{ booking.room.get_room_type_display }} Room</td>
+                        <td style="padding:10px;">{{ booking.check_in|date:"M d, Y" }}</td>
+                        <td style="padding:10px;">{{ booking.check_out|date:"M d, Y" }}</td>
+                        <td style="padding:10px;">₹{{ booking.total_price }}</td>
+                        <td style="padding:10px;">
+                            {% if booking.status == 'confirmed' %}
+                                <span style="color:#27ae60; font-weight:600;">Confirmed</span>
+                            {% elif booking.status == 'cancelled' %}
+                                <span style="color:#c0392b; font-weight:600;">Cancelled</span>
+                            {% elif booking.status == 'completed' %}
+                                <span style="color:#2980b9; font-weight:600;">Completed</span>
+                            {% else %}
+                                <span style="color:#b9770e; font-weight:600;">Pending</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="color:#888;">No bookings found.</p>
+    {% endif %}
+</div>
+{% endblock %}

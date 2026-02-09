@@ -1,0 +1,193 @@
+/* ===== HERO SECTION ===== */
+.hero {
+    background: url("../images/hotel-hero.jpg") center/cover no-repeat;
+    height: 420px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.hero-overlay h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+/* ===== HERO ZOOM EFFECT ===== */
+
+.hero {
+    background: url("../images/hotel-hero.jpg") center/cover no-repeat;
+    height: 420px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;                 /* important */
+}
+
+/* create zoom layer */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../images/hotel-hero.jpg") center/cover no-repeat;
+    z-index: 0;
+    transition: transform 0.8s ease;
+}
+
+/* zoom on hover */
+.hero:hover::before {
+    transform: scale(1.08);
+}
+
+/* keep overlay content above image */
+.hero-overlay {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+/* ===== ROOMS SECTION ===== */
+.rooms-container {
+    max-width: 1100px;
+    margin: 50px auto;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.room-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+}
+
+.room-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.room-content {
+    padding: 18px;
+}
+
+.room-link {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.room-link:hover {
+    color: #3498db;
+}
+
+.price {
+    color: #666;
+}
+
+.rating-value {
+    color: orange;
+}
+
+.no-rating {
+    color: #999;
+}
+
+.availability {
+    color: green;
+    font-weight: bold;
+}
+
+/* ===== BUTTON ===== */
+.btn-primary {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #3498db;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* ===== POOL SECTION (FIXED) ===== */
+.pool-section {
+    position: relative;
+    margin-top: 70px;
+    border-radius: 14px;
+    overflow: hidden;              /* 🔥 prevents overlay spill */
+}
+
+.pool-image {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+/* subtle zoom on hover */
+.pool-section:hover .pool-image {
+    transform: scale(1.05);
+}
+
+/* 💎 Luxury gradient overlay */
+.pool-overlay {
+    position: absolute;
+    bottom: 0;                     /* 👈 only bottom area covered */
+    left: 0;
+    width: 100%;
+    padding: 45px 20px;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.75),
+        rgba(0, 0, 0, 0.0)
+    );
+    color: white;
+    text-align: center;
+}
+
+.pool-overlay h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.pool-overlay p {
+    font-size: 15px;
+    opacity: 0.9;
+}

@@ -1,8 +1,56 @@
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import PasswordChangeForm
+from .forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
+from .models import Profile
 
+# ...existing code...
+
+@login_required
+def change_password_view(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = PasswordChangeForm(user=request.user)
+    return render(request, 'change_password.html', {'form': form})
+
+@login_required
+def booking_history_view(request):
+    from bookings.models import Booking
+    bookings = Booking.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'booking_history.html', {'bookings': bookings})
+
+@login_required
+def update_profile_view(request):
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(
+            request.POST,
+            request.FILES,
+            instance=request.user.profile
+        )
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('profile')
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
+    return render(request, 'update_profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
+
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView, LogoutView
 from .forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 from .models import Profile
 
@@ -48,8 +96,11 @@ def profile_view(request):
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
 
+    from bookings.models import Booking
+    bookings = Booking.objects.filter(user=request.user).order_by('-created_at')
     context = {
         'user_form': user_form,
-        'profile_form': profile_form
+        'profile_form': profile_form,
+        'bookings': bookings
     }
     return render(request, 'profile.html', context)
