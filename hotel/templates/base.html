@@ -126,7 +126,7 @@
 
     <div>
         {% if user.is_authenticated %}
-            Welcome, <a href="{% url 'profile' %}">{{ user.username }}</a> |
+           <span style="color: black;">Welcome :</span> <a href="{% url 'profile' %}">👤 {{ user.username }}</a> |
         <form method="post" action="/accounts/logout/" style="display: inline;">
     {% csrf_token %}
     <button type="button" onclick="openLogoutModal()" class="logout-btn">
@@ -191,7 +191,7 @@
         <li><a href="#">Rooms & Suites</a></li>
         <li><a href="#">Amenities</a></li>
         <li><a href="#">Gallery</a></li>
-        <li><a href="#">Book Now</a></li>
+        <li><a href="/bookings/book/">Book Now</a></li>
       </ul>
     </div>
 
