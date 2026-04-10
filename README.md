@@ -84,9 +84,9 @@ My_Hotel/
 └── README.md           # Project documentation
 ```
 
-## 📸 Screenshots
+## 📸 Visual Showcase
 
-To make this project look its best on GitHub, please save the screenshots of your site into the `screenshots/` folder. Here is how they are organized in this documentation:
+Explore the intuitive user interface and seamless functional flow of the **My Hotel** management system through the following visual showcase:
 
 | Home Page | Room Details |
 | :---: | :---: |
