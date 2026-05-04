@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'unfold',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,5 +136,85 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 
 
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+UNFOLD = {
+    "SITE_TITLE": "My Hotel Admin",
+    "SITE_HEADER": "My Hotel Administration",
+    "SITE_SYMBOL": "hotel", # symbol from icon set
+    "SHOW_HISTORY": True, # show history button at the top of the form
+    "SHOW_VIEW_ON_SITE": True, # show view on site button at the top of the form
+    "COLORS": {
+        "primary": {
+            "50": "250 245 255",
+            "100": "243 232 255",
+            "200": "233 213 255",
+            "300": "216 180 254",
+            "400": "192 132 252",
+            "500": "168 85 247",
+            "600": "147 51 234",
+            "700": "126 34 206",
+            "800": "107 33 168",
+            "900": "88 28 135",
+            "950": "59 7 100",
+        },
+    },
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": False,
+        "navigation": [
+            {
+                "title": "Hotel Management",
+                "items": [
+                    {
+                        "title": "Hotels",
+                        "icon": "hotel",
+                        "link": "/admin/hotels/hotel/",
+                    },
+                    {
+                        "title": "Rooms",
+                        "icon": "meeting_room",
+                        "link": "/admin/rooms/room/",
+                    },
+                    {
+                        "title": "Reviews",
+                        "icon": "reviews",
+                        "link": "/admin/reviews/review/",
+                    },
+                ],
+            },
+            {
+                "title": "Operations",
+                "items": [
+                    {
+                        "title": "Bookings",
+                        "icon": "event_available",
+                        "link": "/admin/bookings/booking/",
+                    },
+                    {
+                        "title": "Payments",
+                        "icon": "payments",
+                        "link": "/admin/payments/payment/",
+                    },
+                ],
+            },
+            {
+                "title": "User Management",
+                "items": [
+                    {
+                        "title": "Users",
+                        "icon": "person",
+                        "link": "/admin/auth/user/",
+                    },
+                    {
+                        "title": "Groups",
+                        "icon": "group",
+                        "link": "/admin/auth/group/",
+                    },
+                ],
+            },
+        ],
+    },
+}

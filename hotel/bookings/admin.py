@@ -1,4 +1,8 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 from .models import Booking
 
-admin.site.register(Booking)
+@admin.register(Booking)
+class BookingAdmin(ModelAdmin):
+    pass
+
