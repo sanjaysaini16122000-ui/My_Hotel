@@ -1,217 +1,227 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>My Hotel</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-<style>
+  <title>My Hotel</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <style>
     /* Django messages styling */
     .messages {
       margin: 20px auto 0 auto;
       max-width: 500px;
     }
+
     .alert {
       padding: 12px 18px;
       border-radius: 6px;
       margin-bottom: 15px;
       font-size: 16px;
       font-weight: 500;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
-    .alert-danger, .alert-error {
+
+    .alert-danger,
+    .alert-error {
       background: #ffeaea;
       color: #c0392b;
       border: 1px solid #e74c3c;
     }
+
     .alert-success {
       background: #eafaf1;
       color: #27ae60;
       border: 1px solid #27ae60;
     }
+
     .alert-info {
       background: #eaf4fb;
       color: #2980b9;
       border: 1px solid #2980b9;
     }
+
     .alert-warning {
       background: #fff8e1;
       color: #b9770e;
       border: 1px solid #f1c40f;
     }
+
     /*      FOOTER       */
-.hotel-footer {
-  background-color: #2c3e50;
-  color: #eee;
-  padding: 20px 15px 10px;;
-  font-family: Arial, sans-serif;
-}
+    .hotel-footer {
+      background-color: #2c3e50;
+      color: #eee;
+      padding: 20px 15px 10px;
+      ;
+      font-family: Arial, sans-serif;
+    }
 
-.footer-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-  max-width: 1200px;
-  margin: auto;
-}
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-.footer-section h3,
-.footer-section h4 {
-  margin-bottom: 8px;
-  color: #fff;
-}
+    .footer-section h3,
+    .footer-section h4 {
+      margin-bottom: 8px;
+      color: #fff;
+    }
 
-.footer-section p,
-.footer-section a {
-  font-size: 14px;
-  color: #ccc;
-  text-decoration: none;
-}
+    .footer-section p,
+    .footer-section a {
+      font-size: 14px;
+      color: #ccc;
+      text-decoration: none;
+    }
 
-.footer-section ul {
-  list-style: none;
-  padding: 0;
-}
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
 
-.footer-section ul li {
-  margin-bottom: 8px;
-}
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
 
-.footer-section a:hover {
-  color: #fff;
-}
+    .footer-section a:hover {
+      color: #fff;
+    }
 
-.social-links a {
-  display: inline-block;
-  margin-right: 10px;
-}
+    .social-links a {
+      display: inline-block;
+      margin-right: 10px;
+    }
 
-.footer-bottom {
-  text-align: center;
-  border-top: 1px solid #333;
-  margin-top: 10px;
-  padding-top: 8px;
-  font-size: 13px;
-  color: #aaa;
-}
-
-</style>
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #333;
+      margin-top: 10px;
+      padding-top: 8px;
+      font-size: 13px;
+      color: #aaa;
+    }
+  </style>
 </head>
+
 <body>
 
-<nav>
+  <nav>
     <div>
-    <a href="/">My Hotel</a>
+      <a href="/">My Hotel</a>
 
-    <!-- ROOMS DROPDOWN -->
-    <div class="dropdown">
+      <!-- ROOMS DROPDOWN -->
+      <div class="dropdown">
         <a href="#" class="dropbtn">Rooms ▾</a>
         <div class="dropdown-content">
-            {% for room in nav_rooms %}
-                <a href="/rooms/{{ room.id }}/">
-                    {{ room.get_room_type_display }} Room
-                </a>
-            {% endfor %}
+          {% for room in nav_rooms %}
+          <a href="/rooms/{{ room.id }}/">
+            {{ room.get_room_type_display }} Room
+          </a>
+          {% endfor %}
         </div>
+      </div>
+
+      <a href="/bookings/book/">Book Room</a>
+
+      {% if user.is_staff %}
+      <a href="{% url 'admin_dashboard' %}">Dashboard</a>
+      {% endif %}
+
     </div>
-
-    <a href="/bookings/book/">Book Room</a>
-
-        {% if user.is_staff %}
-            <a href="{% url 'admin_dashboard' %}">Dashboard</a>
-        {% endif %}
-
-</div>
 
 
     <div>
-        {% if user.is_authenticated %}
-           <span style="color: black;">Welcome :</span> <a href="{% url 'profile' %}">👤 {{ user.username }}</a> |
-        <form method="post" action="/accounts/logout/" style="display: inline;">
-    {% csrf_token %}
-    <button type="button" onclick="openLogoutModal()" class="logout-btn">
-        Logout
-    </button>
-</form>
+      {% if user.is_authenticated %}
+      <span style="color: black;">Welcome :</span> <a href="{% url 'profile' %}">👤 {{ user.username }}</a> |
+      <form method="post" action="/accounts/logout/" style="display: inline;">
+        {% csrf_token %}
+        <button type="button" onclick="openLogoutModal()" class="logout-btn">
+          Logout
+        </button>
+      </form>
 
-        {% else %}
-            <a href="/accounts/login/">Login</a>
-            <a href="/accounts/signup/">Sign Up</a>
-        {% endif %}
+      {% else %}
+      <a href="/accounts/login/">Login</a>
+      <a href="/accounts/signup/">Sign Up</a>
+      {% endif %}
     </div>
-</nav>
+  </nav>
 
-<div class="container">
+  <div class="container">
     {% if messages %}
-      <div class="messages">
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-          </div>
-        {% endfor %}
+    <div class="messages">
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
       </div>
+      {% endfor %}
+    </div>
     {% endif %}
     {% block content %}{% endblock %}
-</div>
+  </div>
 
-<!-- ===== LOGOUT MODAL ===== -->
-<div id="logoutModal" class="modal">
+  <!-- ===== LOGOUT MODAL ===== -->
+  <div id="logoutModal" class="modal">
     <div class="modal-box">
-        <h2>Logout?</h2>
-        <p>Are you sure you want to end your session?</p>
+      <h2>Logout?</h2>
+      <p>Are you sure you want to end your session?</p>
 
-        <div class="modal-actions">
-            <button class="cancel-btn" onclick="closeLogoutModal()">Cancel</button>
+      <div class="modal-actions">
+        <button class="cancel-btn" onclick="closeLogoutModal()">Cancel</button>
 
-            <form method="post" action="/accounts/logout/">
-                {% csrf_token %}
-                <button type="submit" class="confirm-btn">Yes, Logout</button>
-            </form>
-        </div>
-    </div>
-</div>
-<footer class="hotel-footer">
-  <div class="footer-container">
-
-    <div class="footer-section">
-      <h3>My Hotel</h3>
-      <p>Experience comfort, luxury, and unforgettable stays.</p>
-    </div>
-
-    <div class="footer-section">
-      <h4>Contact</h4>
-      <p>📍 123 Beach Road, City, Country</p>
-      <p>📞 +1 (234) 567-890</p>
-      <p>✉️ info@myhotel.com</p>
-    </div>
-
-    <div class="footer-section">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#">Rooms & Suites</a></li>
-        <li><a href="#">Amenities</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="/bookings/book/">Book Now</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-section">
-      <h4>Follow Us</h4>
-      <div class="social-links">
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">Twitter</a>
+        <form method="post" action="/accounts/logout/">
+          {% csrf_token %}
+          <button type="submit" class="confirm-btn">Yes, Logout</button>
+        </form>
       </div>
     </div>
-
   </div>
+  <footer class="hotel-footer">
+    <div class="footer-container">
 
-  <div class="footer-bottom">
-    <p>© 2026 My Hotel. All rights reserved.</p>
-  </div>
-</footer>
+      <div class="footer-section">
+        <h3>My Hotel</h3>
+        <p>Experience comfort, luxury, and unforgettable stays.</p>
+      </div>
 
-<script src="{% static 'js/base.js' %}"></script>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>📍 123 Beach Road, City, Country</p>
+        <p>📞 +1 (234) 567-890</p>
+        <p>✉️ info@myhotel.com</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Rooms & Suites</a></li>
+          <li><a href="#">Amenities</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="/bookings/book/">Book Now</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 My Hotel. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/base.js' %}"></script>
 
 </body>
+
 </html>

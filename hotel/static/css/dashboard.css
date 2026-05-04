@@ -12,7 +12,7 @@
     background: linear-gradient(135deg, #ffffff, #f9fbfd);
     padding: 25px;
     border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -33,7 +33,7 @@
 /* Hover animation */
 .card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
 }
 
 .card h3 {
@@ -59,7 +59,7 @@
     background: white;
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.07);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.07);
 }
 
 .table thead {

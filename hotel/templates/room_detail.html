@@ -3,65 +3,65 @@
 {% block content %}
 
 <style>
-.page-container {
-    max-width: 1100px;
-    margin: 40px auto;
-}
+    .page-container {
+        max-width: 1100px;
+        margin: 40px auto;
+    }
 
-.page-title {
-    text-align: center;
-    margin-bottom: 5px;
-}
+    .page-title {
+        text-align: center;
+        margin-bottom: 5px;
+    }
 
-.rating {
-    text-align: center;
-    color: orange;
-    font-weight: bold;
-    margin-top: -10px;
-}
+    .rating {
+        text-align: center;
+        color: orange;
+        font-weight: bold;
+        margin-top: -10px;
+    }
 
-.top-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-top: 25px;
-    align-items: start;
-}
+    .top-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 25px;
+        align-items: start;
+    }
 
-.room-image {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
+    .room-image {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 
-.info-box {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
+    .info-box {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
 
-.btn-success {
-    background: #27ae60;
-    color: white;
-    padding: 10px 18px;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: bold;
-}
+    .btn-success {
+        background: #27ae60;
+        color: white;
+        padding: 10px 18px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+    }
 
-.btn-primary {
-    background: #3498db;
-    color: white;
-    padding: 10px 18px;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: bold;
-}
+    .btn-primary {
+        background: #3498db;
+        color: white;
+        padding: 10px 18px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+    }
 
-.reviews-section {
-    margin-top: 40px;
-}
+    .reviews-section {
+        margin-top: 40px;
+    }
 </style>
 
 
@@ -76,7 +76,7 @@
     <div class="top-section">
 
         {% if room.image %}
-            <img src="{{ room.image.url }}" class="room-image">
+        <img src="{{ room.image.url }}" class="room-image">
         {% endif %}
 
         <div class="info-box">
@@ -102,15 +102,15 @@
     <div class="reviews-section">
         <h2>Guest Reviews ⭐</h2>
         {% if reviews %}
-            {% for review in reviews %}
-                <div style="border:1px solid #ddd; padding:10px; margin:10px 0; border-radius:5px;">
-                    <strong>{{ review.user.username }}</strong> - ⭐ {{ review.rating }}/5<br>
-                    <p>{{ review.comment }}</p>
-                    <small>{{ review.created_at|date:"M d, Y" }}</small>
-                </div>
-            {% endfor %}
+        {% for review in reviews %}
+        <div style="border:1px solid #ddd; padding:10px; margin:10px 0; border-radius:5px;">
+            <strong>{{ review.user.username }}</strong> - ⭐ {{ review.rating }}/5<br>
+            <p>{{ review.comment }}</p>
+            <small>{{ review.created_at|date:"M d, Y" }}</small>
+        </div>
+        {% endfor %}
         {% else %}
-            <p>No reviews yet. Be the first to review!</p>
+        <p>No reviews yet. Be the first to review!</p>
         {% endif %}
     </div>
 </div>

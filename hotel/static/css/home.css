@@ -22,6 +22,7 @@
     font-size: 42px;
     margin-bottom: 10px;
 }
+
 /* ===== HERO ZOOM EFFECT ===== */
 
 .hero {
@@ -31,7 +32,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;                 /* important */
+    overflow: hidden;
+    /* important */
 }
 
 /* create zoom layer */
@@ -81,14 +83,14 @@
 .room-card {
     background: white;
     border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .room-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
 }
 
 .room-image {
@@ -150,7 +152,8 @@
     position: relative;
     margin-top: 70px;
     border-radius: 14px;
-    overflow: hidden;              /* 🔥 prevents overlay spill */
+    overflow: hidden;
+    /* 🔥 prevents overlay spill */
 }
 
 .pool-image {
@@ -169,15 +172,14 @@
 /* 💎 Luxury gradient overlay */
 .pool-overlay {
     position: absolute;
-    bottom: 0;                     /* 👈 only bottom area covered */
+    bottom: 0;
+    /* 👈 only bottom area covered */
     left: 0;
     width: 100%;
     padding: 45px 20px;
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.75),
-        rgba(0, 0, 0, 0.0)
-    );
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.75),
+            rgba(0, 0, 0, 0.0));
     color: white;
     text-align: center;
 }

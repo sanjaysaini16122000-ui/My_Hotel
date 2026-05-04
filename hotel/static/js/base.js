@@ -7,7 +7,7 @@ function closeLogoutModal() {
 }
 
 // close if clicked outside
-window.onclick = function(e) {
+window.onclick = function (e) {
     const modal = document.getElementById("logoutModal");
     if (e.target === modal) {
         modal.style.display = "none";
