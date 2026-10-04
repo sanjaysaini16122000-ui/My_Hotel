@@ -1,0 +1,46 @@
+/* payment success page css */
+.success-container {
+    max-width: 600px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.success-container h2 {
+    color: #2ecc71;
+    margin-bottom: 20px;
+}
+
+.success-container p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #555;
+}
+
+.success-container strong {
+    color: #000;
+}
+
+.success-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.btn-home {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.btn-home:hover {
+    background: #2980b9;
+}
