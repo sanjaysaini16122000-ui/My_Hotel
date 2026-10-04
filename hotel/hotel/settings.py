@@ -155,7 +155,10 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if IS_VERCEL:
+    MEDIA_ROOT = '/tmp/media'
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 UNFOLD = {
     "SITE_TITLE": "My Hotel Admin",
